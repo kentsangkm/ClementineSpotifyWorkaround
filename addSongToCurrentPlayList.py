@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 #-*- coding: UTF-8 -*-
 
 import requests
@@ -46,12 +46,18 @@ def addOneSong(url):
 </playlist>
 """)
 
-    os.system("/usr/bin/clementine -a /tmp/song.xspf")
+    os.system("clementine -a /tmp/song.xspf")
     return
 
 if (len(sys.argv) > 1 ):
     addOneSong(sys.argv[1])
 
 while(True):
-    for uri in input("Uri: ").split(" "):
-        addOneSong(uri)
+    try:
+        for uri in input("Uri: ").split(" "):
+            if not uri.strip() == "": # blank lines ignored
+                addOneSong(uri)
+    except (KeyboardInterrupt, EOFError): # ^C, ^D
+        sys.stdout.write("\r       \r") # clear line before printing
+        print("Bye")
+        sys.exit(0)
