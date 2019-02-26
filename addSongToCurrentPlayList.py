@@ -28,6 +28,7 @@ def addOneSong(url):
     spotifyId = getInfo(page, "og:url")
     duration = regex(page,'"duration_ms":(\d+),')
     album = regex(page,'"name":"([^"]+)","release_date":"')
+    trackNum = getInfo(page, "music:album:track")
 
     spotifyId = spotifyId.replace("https://open.spotify.com/track/", "spotify:track:")
 
@@ -42,6 +43,7 @@ def addOneSong(url):
       <creator>"""+musician+"""</creator>
       <duration>"""+duration+"""</duration>
       <album>"""+album.encode().decode("unicode-escape")+"""</album>
+      <trackNum>"""+trackNum+"""</trackNum>
     </track>
 </playlist>
 """)
