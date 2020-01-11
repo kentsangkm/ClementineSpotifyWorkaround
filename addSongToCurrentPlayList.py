@@ -15,7 +15,7 @@ def regex(page, reg):
         return ""
 
 def getInfo(page, tag):
-    return regex(page, '<meta property="'+tag+'" content="([^"]+)">')
+    return regex(page, '<meta property="'+tag+'" content="([^"]+)" />')
 
 session = requests.Session()
 
@@ -30,7 +30,8 @@ def addOneSong(url):
     album = regex(page,'"name":"([^"]+)","release_date":"')
     trackNum = getInfo(page, "music:album:track")
 
-    spotifyId = spotifyId.replace("https://open.spotify.com/track/", "spotify:track:")
+    #spotifyId = spotifyId.replace("https://open.spotify.com/track/", "spotify:track:")
+    spotifyId = "spotify:track:{0}".format(re.search('https://open.spotify.com/track/([a-zA-Z0-9]+)\?.*', url).group(1))
 
     print(title)
 
