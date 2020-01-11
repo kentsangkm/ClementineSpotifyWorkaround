@@ -8,3 +8,9 @@ Usage:
 3) click the '...', Share -> copy song link
 4) paste the link to back to the script console
 5) Done
+
+
+
+Remarks:
+Hey everyone, I created another script which include the search feature. You can find it at
+https://github.com/kentsangkm/clementine_spotify_search
